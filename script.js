@@ -1,16 +1,19 @@
-//the idea to solve 100 or even more images is by building a hash map which store (key/vlaue) pair of image data
+//This is the back-end javascript for the image carousel. Since does not have all the images I want in local, will use Picsum Api to test my code right now 
+//Picsum api will generate 100 images maximum per request and stored in json format. 
+//I designed this image carousel by storing the image data with key/value pairs in hashmap
 //key for each image is the index of based on the the length of the array. i.e. for 100 images, the indexes are (0-99)
 //a pointer is created to interact with the left/right button, it is  initalized to point at index 0 that whenever open the UI, the 1st pic pop up is image[0]
 //click nextbutton/right the pointer will move to the next image (index+1), left button will make index-1
-//out bound cases 1. when index goes negative, pointer will be set a (map.size-1) which is the last index of map 2. index > length, the pointer will be set to 0
+//in order to wrap around the images in one page, need to consider the following special cases
+//out bound case 1. when index goes negative, pointer will be set a (map.size-1) which is the last index of map 
+//out bound case 2. index > length, the pointer will be set to 0
 //map is a data structure that is efficient to search and retrive the desired data (value), as long as we have the correct key, we can store as many images as we want
 
-//for bonus part, designed the next-page, previous-page button that every click will generate a new page of 100 pictures. The previous button will return back to the previous page
-//by experiemnting, api can only generate 1093 pics (10 pages), successfully wrap around the pages from end to the begining (page 10->click next page -> page 1) vis versa
+//I also designed the feature of next-page, previous-page button that every click will generate a new page of 100 pictures. The previous button will return back to the previous page
+//Sicne this api can only generate 1093 pics (10 pages), I came up the solution to wrap around the pages from end to the begining (page 10->click next page -> page 1) vis versa
 //setPageMap is a method like a 'bookmark' of the carousel, every time a new page is generated, it will add one entry into the map that can be retrive the loctaion of previous page later
-//setPageMap is currently set as (page_pointer, 0), so everytime move a new page/go back to pre page, it will start from the 1st picture. If with more time, this function can be prefected
-//since I am considering the code can be intergrated for a bigger database in the future (more than 1093 pics) 
-//so only the last page generated will show when click the pre-page button at page 1. (for 10 pages, if only 7 pages generated, when click pre at page 1, it will direct to page 7 not page 10 )
+//setPageMap is currently set as (page_pointer, 0), so everytime move a new page/go back to pre page, it will start from the 1st picture. 
+//In the future, the 'bookmark' feature will memorize the location of image at each page, maybe a seperate hashmap, to fit with a bigger database 
 
 const nextbutton =document.querySelector('.carousel__button--right');
 const previousbutton =document.querySelector('.carousel__button--left');
