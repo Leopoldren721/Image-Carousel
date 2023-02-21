@@ -1,0 +1,59 @@
+.carousel{
+    position:relative;
+    height:600px;
+    width:50%;
+    margin: 0 auto;
+}
+
+.img{
+    position: center;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel__track-container{
+    padding:10px;
+    position:relative;
+}
+
+.carousel__track{
+    padding:0;
+    margin:o;
+    list-style: none;
+}
+
+.carousel__button{
+    position: absolute;
+    top:50%;
+    transform: translateY(-30%);
+    cursor: pointer;
+}
+
+.carousel__button--left{
+    left: -40px;
+}
+
+.carousel__button--right{
+    right: -40px;
+}
+
+.carousel__page{
+    position: absolute;
+    top:130%;
+    transform: translateY(-20%);
+    
+    cursor: pointer;
+}
+
+.carousel__page--previous{
+    left: -150px;
+}
+
+.carousel__page--next{
+    right: -150px;
+}
+
+
+
+
